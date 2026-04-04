@@ -1,12 +1,36 @@
 {
-  "name": "sdk",
+  "name": "fixora-sdk",
   "version": "1.0.0",
-  "description": "SDK - Error tracking for Fixora",
+  "description": "Fixora SDK - Capture frontend errors and get AI-powered fixes instantly.",
   "main": "src/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "type": "module",
+  "keywords": [
+    "error-tracking",
+    "logging",
+    "frontend-errors",
+    "javascript-errors",
+    "monitoring",
+    "debugging",
+    "ai-debugging",
+    "observability",
+    "sdk",
+    "react-errors",
+    "web-monitoring"
+  ],
+  "author": "Kunal Tiwari",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kunalt96/fixora.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "bugs": {
+    "url": "https://github.com/kunalt96/fixora/issues"
+  },
+  "homepage": "https://github.com/kunalt96/fixora#readme",
+  "files": [
+    "src"
+  ],
+  "engines": {
+    "node": ">=14"
+  }
 }

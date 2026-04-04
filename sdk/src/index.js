@@ -1,26 +1,38 @@
-export function init({ apiURL }) {
-  console.log(apiURL)
-  if (!apiURL) {
-    console.error("fixora: APP URL is required.");
+export function init({ apiURL, apiKey }) {
+  console.log(apiKey, apiURL)
+  if (!apiURL || !apiKey) {
+    console.error("Fixora: APP URL or APIKEY  is required.");
     return;
   }
 
-  console.log("Fixora initialized");
-
+  // JS Errors
   window.onerror = function (message, source, lineno, colno, error) {
-    console.log(message, source, lineno, colno, error)
-    fetch(`${apiURL}/errors`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        message: message,
-        stack: error ? error.stack : '',
-        url: window.location.href
-      })
-    }).catch((err) => {
-      console.error("fixora: failed to send error");
+    sendError({
+      message,
+      stack: error?.stack || "",
+      url: window.location.href
     });
   };
+
+  // Promise / async errors
+  window.onunhandledrejection = function (event) {
+    sendError({
+      message: event.reason?.message || "Unhandled Promise Rejection",
+      stack: event.reason?.stack || "",
+      url: window.location.href
+    });
+  };
+  function sendError(errorData) {
+    fetch(`${apiURL}/errors`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": apiKey || "anonymous"
+      },
+      body: JSON.stringify(errorData)
+    }).catch(() => {
+      console.error("Fixora: Failed to send error");
+    });
+  }
+  console.log("Fixora initialized and Ready to USE");
 }

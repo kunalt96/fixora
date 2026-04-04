@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 const router = express.Router();
 
-const errors = [];
+export const errors = [];
 
 router.post('/errors', (req, res) => {
   const { message, stack, url } = req.body;
@@ -23,7 +23,8 @@ router.post('/errors', (req, res) => {
     url,
     count: 1,
     firstSeen: new Date(),
-    lastSeen: new Date()
+    lastSeen: new Date(),
+    analysis: null
   };
 
   errors.push(newError);

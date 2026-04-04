@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fixora - Documentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .node-network {
+            /* ensure it renders full page when scrolling */
+            position: fixed;
+        }
+    </style>
+</head>
+
+<body class="bg-[#0d121a] text-white min-h-screen relative">
+    <!-- Main Container -->
+    <main class="relative w-full min-h-screen flex flex-col items-center">
+        <!-- SVG Graphic networks overlay -->
+        <div class="node-network absolute inset-0 opacity-40 bg-stars"></div>
+
+        <!-- Navbar -->
+        <nav class="relative z-10 w-full flex justify-between items-center px-6 md:px-12 py-6 md:py-8 max-w-[1200px]">
+            <div class="flex items-center gap-2">
+                <a href="index.html" class="text-[22px] font-bold text-white flex items-center gap-2 hover:opacity-80">
+                    <span class="text-[#38bdf8] drop-shadow-[0_0_8px_rgba(56,189,248,0.8)]">✔</span>
+                    Fixora
+                </a>
+            </div>
+            <div class="hidden md:flex space-x-10 text-sm font-medium text-gray-300">
+                <a href="index.html" class="hover:text-white flex items-center gap-1">Product</a>
+                <a href="docs.html" class="text-white">Docs</a>
+                <a href="pricing.html" class="hover:text-white">Pricing</a>
+            </div>
+            <div class="text-sm font-medium text-gray-300 hover:text-white cursor-pointer mr-2">
+                Login
+            </div>
+        </nav>
+
+        <!-- Docs Content -->
+        <section class="relative z-10 w-full max-w-[800px] mt-10 px-6 pb-20 text-gray-300">
+            <h1 class="text-3xl md:text-4xl font-bold text-white mb-6">Documentation</h1>
+
+            <div class="mb-12">
+                <h2 class="text-2xl font-bold text-white mb-4">What is Fixora?</h2>
+                <p class="leading-relaxed mb-4">
+                    Fixora is an AI-powered error tracking and debugging platform designed to instantly capture
+                    anomalies in your front-end applications, analyze their stack traces, and provide exact, actionable
+                    solutions powered by cutting-edge Generative AI.
+                </p>
+                <p class="leading-relaxed">
+                    By integrating Fixora, you bypass hours of manual log-diving and immediately get context-aware bug
+                    fixes right inside your dashboard.
+                </p>
+            </div>
+
+            <div>
+                <h2 class="text-2xl font-bold text-white mb-4">How to Integrate Fixora</h2>
+                <p class="mb-6">Integrating the Fixora SDK takes less than a minute. Follow these steps to start
+                    tracking errors instantly:</p>
+
+                <ol class="list-decimal pl-5 space-y-6 break-words">
+                    <li>
+                        <strong class="text-white">Install the SDK</strong>
+                        <p class="mt-1 text-sm">Use npm or yarn to add the Fixora SDK to your project dependencies.</p>
+                        <div class="bg-gray-900 border border-gray-800 rounded-lg p-4 mt-3">
+                            <code class="text-[#4ade80]">npm install fixora-sdk</code>
+                        </div>
+                    </li>
+                    <li>
+                        <strong class="text-white">Initialize the SDK</strong>
+                        <p class="mt-1 text-sm">Call the initialization function at the very top of your application
+                            entry point (e.g., <code>index.js</code> or <code>App.jsx</code>).</p>
+                        <div class="bg-gray-900 border border-gray-800 rounded-lg p-4 mt-3 overflow-x-auto text-sm">
+                            <pre><code class="text-gray-300"><span class="text-purple-400">import</span> { init } <span class="text-purple-400">from</span> <span class="text-green-300">"fixora-sdk"</span>;
+
+init({
+  apiURL: <span class="text-green-300">"https://your-api.com"</span>,
+  apiKey: <span class="text-green-300">"your-api-key"</span>
+});</code></pre>
+                        </div>
+                    </li>
+                    <li>
+                        <strong class="text-white">Watch the Dashboard</strong>
+                        <p class="mt-1 text-sm">Run your app. Any unhandled exceptions or rejected promises will now be
+                            caught automatically and piped to your Fixora dashboard for AI analysis.</p>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="relative z-10 mt-auto pb-10 text-[13px] text-gray-400/80 text-center w-full">
+            🚀 Fixora is currently in development. Launching publicly soon!
+        </footer>
+    </main>
+</body>
+
+</html>

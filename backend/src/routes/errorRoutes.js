@@ -8,6 +8,14 @@ const errors = [];
 router.post('/errors', (req, res) => {
   const { message, stack, url } = req.body;
 
+  const existingError = errors.find((err) => err.message === message);
+
+  if (existingError) {
+    existingError.count += 1;
+    existingError.lastSeen = new Date();
+    return res.status(200).json(existingError);
+  }
+
   const newError = {
     id: uuidv4(),
     message,

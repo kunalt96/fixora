@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import errorRoutes from './routes/errorRoutes.js';
 import analyzeRoutes from './routes/analyzeRoutes.js';
+import apiKeyRoutes from './routes/apiKeyRoutes.js';
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ app.use(express.json());
 
 app.use('/api', errorRoutes);
 app.use('/api', analyzeRoutes);
+app.use('/api', apiKeyRoutes);
 
 app.get('/', (req, res) => {
   res.send('Fixora API is running!');

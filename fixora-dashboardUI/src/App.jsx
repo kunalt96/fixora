@@ -2,6 +2,9 @@ import { useState, useEffect, useCallback, useMemo } from 'react';
 
 function App() {
   const [errors, setErrors] = useState([]);
+  const [apiKey, setApiKey] = useState(localStorage.getItem('fixora_api_key') || "");
+  const [showApiKeyModal, setShowApiKeyModal] = useState(false);
+  const [generatedApiKey, setGeneratedApiKey] = useState("");
   const [analyses, setAnalyses] = useState(null);
   const [loading, setLoading] = useState(false);
   const [selectedError, setSelectedError] = useState(null);
@@ -15,11 +18,16 @@ function App() {
   }, [errors, search]);
 
   useEffect(() => {
-    fetch('http://localhost:4000/api/errors')
+    if (!apiKey) return;
+    fetch('http://localhost:4000/api/errors', {
+      headers: {
+        'x-api-key': apiKey
+      }
+    })
       .then((res) => res.json())
       .then((data) => setErrors(data))
       .catch((err) => console.error("failed to fetch errors", err));
-  }, []);
+  }, [apiKey]);
 
   const analyzeError = useCallback(async (err) => {
     setSelectedError(err);
@@ -27,7 +35,10 @@ function App() {
     try {
       const res = await fetch("http://localhost:4000/api/analyze", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": apiKey
+        },
         body: JSON.stringify({ message: err.message, stack: err.stack }),
       });
       const data = await res.json();
@@ -46,10 +57,29 @@ function App() {
 
           {/* HEADER */}
           <div className="flex justify-between items-center mb-6">
-            <h1 className="text-3xl font-bold">Fixora</h1>
-            <span className="text-gray-400 text-sm">
-              AI Error Intelligence
-            </span>
+            <div className="flex items-center gap-4">
+              <h1 className="text-3xl font-bold">Fixora</h1>
+              <span className="text-gray-400 text-sm">
+                AI Error Intelligence
+              </span>
+            </div>
+            <button
+              onClick={async () => {
+                try {
+                  const res = await fetch("http://localhost:4000/api/generate-apiKey");
+                  const data = await res.json();
+                  setGeneratedApiKey(data.apiKey);
+                  setShowApiKeyModal(true);
+                  localStorage.setItem("fixora_api_key", data.apiKey);
+                  setApiKey(data.apiKey);
+                } catch (err) {
+                  console.error(err);
+                }
+              }}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded font-medium transition"
+            >
+              Generate API Key
+            </button>
           </div>
 
           {/* SEARCH */}
@@ -166,6 +196,38 @@ function App() {
                 Close
               </button>
 
+            </div>
+          </div>
+        )}
+
+        {showApiKeyModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+            <div className="bg-gray-900 border border-blue-500/50 shadow-[0_0_20px_rgba(59,130,246,0.2)] p-8 rounded-2xl w-[450px] text-center">
+              <div className="mx-auto bg-green-500/10 w-12 h-12 flex items-center justify-center rounded-full mb-4">
+                <span className="text-green-500 text-xl font-bold">✔</span>
+              </div>
+              <h2 className="text-2xl font-bold text-white mb-2 ml-1">API Key Generated!</h2>
+              <p className="text-sm text-gray-400 mb-6">Please copy this key and keep it safe. It is required to authenticate your Fixora SDK and cannot be viewed again.</p>
+
+              <div className="bg-gray-800 border border-gray-700 rounded-lg p-4 mb-6 flex items-center justify-between">
+                <code className="text-[#4ade80] font-mono tracking-wider break-all">{generatedApiKey}</code>
+                <button
+                  onClick={() => navigator.clipboard.writeText(generatedApiKey)}
+                  className="ml-4 text-gray-400 hover:text-white transition"
+                  title="Copy to clipboard"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                  </svg>
+                </button>
+              </div>
+
+              <button
+                onClick={() => setShowApiKeyModal(false)}
+                className="w-full py-3 bg-white text-black hover:bg-gray-200 rounded-xl font-semibold transition"
+              >
+                I've copied it securely
+              </button>
             </div>
           </div>
         )}

@@ -1,6 +1,6 @@
 import express from "express";
 import { analyZeERROR } from "../services/aiServices.js";
-import { errors } from "./errorRoutes.js";
+import { tenants } from "./errorRoutes.js";
 
 const router = express.Router();
 
@@ -11,7 +11,12 @@ router.post("/analyze", async (req, res) => {
         return res.status(400).json({ error: "Message is required" });
     }
 
-    const existingError = errors.find((err) => err.message === message);
+    const finalApiKey = req.headers['x-api-key'] || req.body.apiKey;
+    if (!finalApiKey || !tenants[finalApiKey]) {
+        return res.status(404).json({ error: "Tenant not found or invalid API key" });
+    }
+    const tenantErrors = tenants[finalApiKey];
+    const existingError = tenantErrors.find((err) => err.message === message);
 
     if (existingError && existingError.analysis) {
         return res.json(existingError.analysis);

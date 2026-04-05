@@ -1,5 +1,4 @@
 export function init({ apiURL, apiKey }) {
-  console.log(apiKey, apiURL)
   if (!apiURL || !apiKey) {
     console.error("Fixora: APP URL or APIKEY  is required.");
     return;

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fixora - Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-[#0d121a] text-white min-h-screen relative overflow-hidden">
+    <!-- Main Container -->
+    <main class="relative w-full min-h-screen flex flex-col items-center">
+        <!-- SVG Graphic networks overlay -->
+        <div class="node-network absolute inset-0 opacity-40 bg-stars"></div>
+
+        <!-- Navbar -->
+        <nav class="relative z-10 w-full flex justify-between items-center px-6 md:px-12 py-6 md:py-8 max-w-[1200px]">
+            <div class="flex items-center gap-2">
+                <a href="index.html" class="text-[22px] font-bold text-white flex items-center gap-2 hover:opacity-80">
+                    <span class="text-[#38bdf8] drop-shadow-[0_0_8px_rgba(56,189,248,0.8)]">✔</span>
+                    Fixora
+                </a>
+            </div>
+            <div class="hidden md:flex space-x-10 text-sm font-medium text-gray-300">
+                <a href="index.html" class="hover:text-white flex items-center gap-1">Product</a>
+                <a href="docs.html" class="hover:text-white">Docs</a>
+                <a href="pricing.html" class="hover:text-white">Pricing</a>
+            </div>
+            <a href="login.html" class="text-sm font-medium text-gray-300 hover:text-white cursor-pointer mr-2">
+                Login
+            </a>
+        </nav>
+
+        <!-- Login Content -->
+        <section class="relative z-10 flex flex-col items-center text-center mt-12 md:mt-24 px-6 w-full">
+            <h1 class="text-4xl md:text-[52px] font-bold leading-tight mb-4 tracking-tight">Welcome back</h1>
+            <p class="text-lg md:text-[20px] text-gray-300 mb-10 md:mb-12 leading-relaxed max-w-[500px]">
+                Sign in to access your Fixora dashboard.
+            </p>
+            
+            <div class="bg-[#0d121a]/80 backdrop-blur-md border border-gray-700 rounded-2xl md:rounded-[2rem] p-6 md:p-10 max-w-[400px] w-full shadow-[0_0_40px_rgba(0,0,0,0.5)] relative">
+                
+                <form class="text-left flex flex-col gap-5">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1.5" for="email">Email address</label>
+                        <input type="email" id="email" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#4ade80] focus:ring-1 focus:ring-[#4ade80] transition" placeholder="you@example.com">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1.5" for="password">Password</label>
+                        <input type="password" id="password" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#4ade80] focus:ring-1 focus:ring-[#4ade80] transition" placeholder="••••••••">
+                    </div>
+
+                    <div class="flex items-center justify-between text-sm">
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox" class="rounded bg-gray-900 border-gray-700 text-[#4ade80] focus:ring-[#4ade80] focus:ring-offset-gray-900">
+                            <span class="text-gray-400">Remember me</span>
+                        </label>
+                        <a href="#" class="text-[#4ade80] hover:text-white transition">Forgot password?</a>
+                    </div>
+                    
+                    <button type="button" class="mt-2 w-full text-center bg-gradient-to-b from-[#69f0ae] to-[#34d399] hover:brightness-110 transition duration-300 text-gray-900 px-8 py-3.5 rounded-[12px] font-bold shadow-[0_0_20px_rgba(52,211,153,0.2)]">
+                        Sign In
+                    </button>
+                    
+                    <p class="text-center text-sm text-gray-400 mt-4">
+                        Don't have an account? <a href="#" class="text-white hover:text-[#4ade80] transition font-medium">Sign up</a>
+                    </p>
+                </form>
+
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="relative z-10 mt-auto pt-20 pb-10 text-[13px] text-gray-400/80 text-center w-full">
+            🚀 Fixora is currently in development. Launching publicly soon!
+        </footer>
+    </main>
+</body>
+</html>

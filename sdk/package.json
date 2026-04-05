@@ -1,5 +1,5 @@
 {
-  "name": "fixora-sdk",
+  "name": "@kuntiwar/fixora-sdk",
   "version": "1.0.0",
   "description": "Fixora SDK - Capture frontend errors and get AI-powered fixes instantly.",
   "main": "src/index.js",
@@ -12,10 +12,18 @@
     "monitoring",
     "debugging",
     "ai-debugging",
+    "ai-assistant",
+    "generative-ai",
+    "gemini",
+    "error-handling",
+    "stack-trace",
     "observability",
     "sdk",
     "react-errors",
-    "web-monitoring"
+    "web-monitoring",
+    "crash-reporting",
+    "bug-fixer",
+    "tenant-metrics"
   ],
   "author": "Kunal Tiwari",
   "license": "MIT",
@@ -26,7 +34,7 @@
   "bugs": {
     "url": "https://github.com/kunalt96/fixora/issues"
   },
-  "homepage": "https://github.com/kunalt96/fixora#readme",
+  "homepage": "https://kunalt96.github.io/fixora/index.html",
   "files": [
     "src"
   ],

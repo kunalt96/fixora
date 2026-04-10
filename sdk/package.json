@@ -1,6 +1,6 @@
 {
   "name": "@kuntiwar/fixora-sdk",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Fixora SDK - Capture frontend errors and get AI-powered fixes instantly.",
   "main": "src/index.js",
   "type": "module",

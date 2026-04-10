@@ -7,6 +7,9 @@
   <br/>
 </div>
 
+> **🚧 Fixora is currently in active development. Launching BETA soon!**
+> For any details, email at [kunaltiwari5596@gmail.com](mailto:kunaltiwari5596@gmail.com)
+
 ---
 
 Fixora is a next-generation, AI-driven error tracking and debugging platform. Instead of digging through endless stack traces, the Fixora SDK quietly captures anomalies inside your frontend JavaScript or React applications, pushes them to your multi-tenant backend, and delivers an exact, AI-generated solution detailing why the failure occurred and exactly what code blocks to correct.

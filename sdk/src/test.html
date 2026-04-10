@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Fixora Test</title>
+</head>
+
+<body>
+    <h1>Fixora Test Page</h1>
+
+    <script type="module">
+        import { init } from "./index.js";
+
+        init({
+            apiURL: "http://localhost:4000/api",
+            apiKey: "992f8295836d36c4"
+        });
+
+        // trigger error after 2 seconds
+        setTimeout(() => {
+            undefinedFunction();
+        }, 2000);
+    </script>
+</body>
+
+</html>
